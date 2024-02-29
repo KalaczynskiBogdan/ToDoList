@@ -34,11 +34,11 @@ class InProgressFragment : Fragment() {
 
         initObservers()
 
-        viewModel.fetchList()
+        viewModel.getList()
     }
 
     private fun initObservers() {
-        viewModel.getTasksResultLiveData().observe(viewLifecycleOwner) { result ->
+        viewModel.tasksLiveData.observe(viewLifecycleOwner) { result ->
             showTasks(result)
         }
     }

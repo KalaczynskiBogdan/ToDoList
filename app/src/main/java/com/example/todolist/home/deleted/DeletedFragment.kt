@@ -34,11 +34,11 @@ class DeletedFragment : Fragment() {
 
         initObservers()
 
-        viewModel.getList()
+        viewModel.fetchList()
     }
 
     private fun initObservers() {
-        viewModel.tasksLiveData.observe(viewLifecycleOwner) { result ->
+        viewModel.getTasksResultLiveData().observe(viewLifecycleOwner) { result ->
             showTasks(result)
         }
     }

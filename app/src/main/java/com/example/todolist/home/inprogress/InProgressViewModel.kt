@@ -1,32 +1,22 @@
 package com.example.todolist.home.inprogress
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.todolist.repository.TaskRepository
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.launch
 
 class InProgressViewModel(
     private val repository: TaskRepository,
 ) : ViewModel() {
-    private var compositeDisposable: CompositeDisposable? = CompositeDisposable()
+    private val tasksFlow = MutableSharedFlow<List<String>>()
+    fun getTasksFlow(): Flow<List<String>> = tasksFlow
 
-    val tasksLiveData: MutableLiveData<List<String>> = MutableLiveData()
-
-    fun getList() {
-        val namesDisposable = repository.getInProgressTasks()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { result ->
-                tasksLiveData.value = result
-            }
-        compositeDisposable?.add(namesDisposable)
-    }
-
-    override fun onCleared() {
-        compositeDisposable?.clear()
-        compositeDisposable = null
-        super.onCleared()
+    fun getList(){
+        viewModelScope.launch {
+            val tasks = repository.getInProgressTasks()
+            tasksFlow.emit(tasks)
+        }
     }
 }

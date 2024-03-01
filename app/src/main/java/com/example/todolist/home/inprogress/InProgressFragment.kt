@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todolist.databinding.FragmentInProgressBinding
 import com.example.todolist.home.recycler.TaskAdapter
 import com.example.todolist.repository.TaskRepository
+import kotlinx.coroutines.launch
 
 class InProgressFragment : Fragment() {
     private var _binding: FragmentInProgressBinding? = null
@@ -38,8 +40,10 @@ class InProgressFragment : Fragment() {
     }
 
     private fun initObservers() {
-        viewModel.tasksLiveData.observe(viewLifecycleOwner) { result ->
-            showTasks(result)
+        lifecycleScope.launch{
+            viewModel.getTasksFlow().collect{
+                showTasks(it)
+            }
         }
     }
 

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todolist.databinding.FragmentInProgressBinding
+import com.example.todolist.data.datamodel.Task
 import com.example.todolist.home.recycler.TaskAdapter
 import com.example.todolist.repository.TaskRepository
 
@@ -43,7 +44,7 @@ class InProgressFragment : Fragment() {
         }
     }
 
-    private fun showTasks(tasks: List<String>) {
+    private fun showTasks(tasks: ArrayList<Task>) {
         val layoutManager = LinearLayoutManager(requireContext())
         binding.rvInProgress.layoutManager = layoutManager
         val adapter = TaskAdapter(tasks)

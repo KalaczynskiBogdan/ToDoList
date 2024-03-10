@@ -6,4 +6,7 @@
     <string name="enter_your_name">Enter your name</string>
     <string name="save">save</string>
     <string name="back">back</string>
+    <string name="add_new_task">Add new task</string>
+    <string name="enter_new_task">Enter new task</string>
+    <string name="do_you_want_to_turn_on_a_reminder">Do you want to turn on a reminder?</string>
 </resources>

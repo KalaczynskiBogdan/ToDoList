@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todolist.home.recycler.TaskAdapter
 import com.example.todolist.repository.TaskRepository
 import com.example.todolist.databinding.FragmentDeletedBinding
+import com.example.todolist.data.datamodel.Task
 
 class DeletedFragment : Fragment() {
     private var _binding: FragmentDeletedBinding? = null
@@ -43,7 +44,7 @@ class DeletedFragment : Fragment() {
         }
     }
 
-    private fun showTasks(tasks: List<String>) {
+    private fun showTasks(tasks: ArrayList<Task>) {
         val layoutManager = LinearLayoutManager(requireContext())
         binding.rvDeleted.layoutManager = layoutManager
         val adapter = TaskAdapter(tasks)

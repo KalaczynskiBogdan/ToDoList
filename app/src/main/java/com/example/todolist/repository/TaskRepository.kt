@@ -1,13 +1,21 @@
 package com.example.todolist.repository
 
+import com.example.todolist.data.database.DataBase
+import com.example.todolist.data.datamodel.Task
+
 class TaskRepository {
-    fun getDeletedTasks(): List<String> {
-        return listOf("Receive a good mark", "Go to the gym", "Tell your crush about your feelings", "Study something new", "Go for a walk with my pet")
+    private val dataBase: DataBase = DataBase.getInstance()
+    fun getDeletedTasks(): ArrayList<Task> {
+        return dataBase.getListDeletedTasks()
     }
-    fun getDoneTasks(): List<String> {
-        return listOf("Drink a cup of tea", "Eat a breakfast", "Brush your teeth", "Take a bag with you", "Say goodbye to your mama")
+    fun getDoneTasks(): ArrayList<Task> {
+        return dataBase.getListDoneTasks()
     }
-    fun getInProgressTasks(): List<String> {
-        return listOf("Have a good day", "Go to the college", "Study well", "Speak with your friend", "Think about your next day")
+    fun getInProgressTasks(): ArrayList<Task> {
+        return dataBase.getListInProgressTasks()
+    }
+
+    fun addNewTask(task: Task){
+        dataBase.addNewTask(task)
     }
 }

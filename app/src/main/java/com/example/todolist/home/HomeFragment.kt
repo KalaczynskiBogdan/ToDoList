@@ -8,7 +8,8 @@ import android.view.ViewGroup
 import com.example.todolist.MainActivity
 import com.example.todolist.R
 import com.example.todolist.user.UserFragment
-import com.example.todolist.databinding.FragmentListBinding
+import com.example.todolist.databinding.FragmentHomeBinding
+import com.example.todolist.addtask.AddTaskFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class HomeFragment : Fragment() {
@@ -20,21 +21,31 @@ class HomeFragment : Fragment() {
         "deleted"
     )
 
-    private var _binding: FragmentListBinding? = null
+    private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentListBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showList()
+
         onBottomNavigationClick()
+
+        onFloatingButtonCLick()
+    }
+
+    private fun onFloatingButtonCLick() {
+        binding.fabAdd.setOnClickListener {
+            val fragment = AddTaskFragment()
+            (activity as MainActivity).navigateToNextScreen(fragment)
+        }
     }
 
     override fun onDestroyView() {

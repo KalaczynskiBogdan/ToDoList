@@ -51,6 +51,12 @@ class AddTaskFragment : Fragment() {
 
         saveTask()
 
+        changeTime()
+    }
+    private fun changeTime(){
+        binding.ivChange.setOnClickListener {
+            showTimePickerDialog()
+        }
     }
 
     private fun selectTime() {
@@ -74,6 +80,11 @@ class AddTaskFragment : Fragment() {
                 calendar.add(Calendar.MINUTE, -2)
 
                 selectedTimeInMillis = calendar.timeInMillis
+
+                val formatted = String.format("%02d:%02d", hourOfDay, minuteOfDay)
+                binding.tvTime.text = formatted
+
+                timeSelected()
             },
             hour,
             minute,
@@ -92,6 +103,14 @@ class AddTaskFragment : Fragment() {
             PendingIntent.getBroadcast(requireContext(), 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent)
+    }
+
+    private fun timeSelected(){
+        if (selectedTimeInMillis.toInt()!= 0){
+            binding.tvTime.visibility = View.VISIBLE
+            binding.ivTime.visibility = View.INVISIBLE
+            binding.ivChange.visibility = View.VISIBLE
+        }
     }
 
     private fun saveTask() {

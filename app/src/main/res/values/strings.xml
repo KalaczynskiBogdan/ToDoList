@@ -9,4 +9,5 @@
     <string name="add_new_task">Add new task</string>
     <string name="enter_new_task">Enter new task</string>
     <string name="do_you_want_to_turn_on_a_reminder">Do you want to turn on a reminder?</string>
+    <string name="_00_00">00:00</string>
 </resources>

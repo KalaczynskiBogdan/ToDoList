@@ -7,7 +7,7 @@
     tools:context=".addtask.AddTaskFragment">
 
     <TextView
-        android:id="@+id/tvAddNote"
+        android:id="@+id/tvAddTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -17,11 +17,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/_00_00"
+        android:textSize="28sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/ivTime"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
+        android:id="@+id/ivTime"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="16dp"
         android:src="@drawable/ic_time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:src="@drawable/ic_change"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/ivTime"
+        android:visibility="invisible"
+        android:id="@+id/ivChange"
         android:layout_width="40dp"
         android:layout_margin="16dp"
         android:layout_height="40dp"/>
@@ -32,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:hint="@string/enter_new_task"
-        app:layout_constraintTop_toBottomOf="@+id/tvAddNote" />
+        app:layout_constraintTop_toBottomOf="@+id/tvAddTask" />
 
     <Button
         android:id="@+id/btnSave"
